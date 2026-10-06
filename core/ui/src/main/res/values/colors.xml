@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Cinema dark palette. The app is dark-only by design. -->
+    <color name="sf_primary">#FF7C4DFF</color>
+    <color name="sf_on_primary">#FFFFFFFF</color>
+    <color name="sf_secondary">#FF00E5FF</color>
+    <color name="sf_on_secondary">#FF00131A</color>
+    <color name="sf_background">#FF0B0B12</color>
+    <color name="sf_surface">#FF161622</color>
+    <color name="sf_surface_variant">#FF22223A</color>
+    <color name="sf_on_surface">#FFF2F2F7</color>
+    <color name="sf_on_surface_variant">#FFA0A0B8</color>
+    <color name="sf_error">#FFFF5470</color>
+    <color name="sf_scrim">#99000000</color>
+    <color name="sf_premium">#FFFFC107</color>
+</resources>

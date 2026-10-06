@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_title">Short Film</string>
+    <string name="home_category_all">Tất cả</string>
+    <string name="home_empty">Chưa có phim nào.</string>
+</resources>

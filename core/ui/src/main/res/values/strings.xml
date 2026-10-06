@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sf_retry">Thử lại</string>
+    <string name="sf_error_generic">Đã có lỗi xảy ra. Vui lòng thử lại.</string>
+    <string name="sf_error_network">Không thể tải dữ liệu mới. Đang hiển thị dữ liệu đã lưu.</string>
+    <string name="sf_premium">PREMIUM</string>
+</resources>

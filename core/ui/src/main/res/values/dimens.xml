@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sf_space_xs">4dp</dimen>
+    <dimen name="sf_space_s">8dp</dimen>
+    <dimen name="sf_space_m">12dp</dimen>
+    <dimen name="sf_space_l">16dp</dimen>
+    <dimen name="sf_space_xl">24dp</dimen>
+    <dimen name="sf_corner_card">12dp</dimen>
+</resources>

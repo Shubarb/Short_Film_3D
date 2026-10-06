@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="player_title">Đang phát</string>
+    <string name="player_back">Quay lại</string>
+    <string name="player_not_found">Không tìm thấy phim này.</string>
+    <string name="player_playback_error">Không phát được video. Kiểm tra kết nối mạng và thử lại.</string>
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.ShortFilm" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/sf_primary</item>
+        <item name="colorOnPrimary">@color/sf_on_primary</item>
+        <item name="colorSecondary">@color/sf_secondary</item>
+        <item name="colorOnSecondary">@color/sf_on_secondary</item>
+        <item name="colorError">@color/sf_error</item>
+        <item name="android:colorBackground">@color/sf_background</item>
+        <item name="colorSurface">@color/sf_surface</item>
+        <item name="colorOnSurface">@color/sf_on_surface</item>
+        <item name="colorSurfaceVariant">@color/sf_surface_variant</item>
+        <item name="colorOnSurfaceVariant">@color/sf_on_surface_variant</item>
+        <item name="android:statusBarColor">@color/sf_background</item>
+        <item name="android:navigationBarColor">@color/sf_background</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="Theme.ShortFilm.Player">
+        <item name="android:statusBarColor">@android:color/black</item>
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
+
+    <style name="TextAppearance.ShortFilm.Badge" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

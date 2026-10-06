@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/player_graph"
+    app:startDestination="@id/playerFragment">
+
+    <fragment
+        android:id="@+id/playerFragment"
+        android:name="com.shortdrama.ai.feature.player.PlayerFragment"
+        android:label="@string/player_title">
+
+        <argument
+            android:name="filmId"
+            app:argType="string" />
+
+        <!-- Must match core:ui DeepLinks.player(). -->
+        <deepLink app:uri="shortfilm://player/{filmId}" />
+    </fragment>
+</navigation>

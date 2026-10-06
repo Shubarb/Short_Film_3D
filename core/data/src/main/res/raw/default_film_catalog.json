@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "categories": [
+    { "id": "trending", "title": "Trending" },
+    { "id": "fantasy", "title": "Fantasy" },
+    { "id": "scifi", "title": "Sci-Fi" }
+  ],
+  "films": [
+    {
+      "id": "big-buck-bunny",
+      "title": "Big Buck Bunny",
+      "description": "A giant rabbit takes revenge on three bullying rodents in this 3D animated short.",
+      "thumbnailUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      "durationSec": 596,
+      "categoryId": "trending",
+      "tags": ["3d", "comedy"],
+      "isPremium": false
+    },
+    {
+      "id": "sintel",
+      "title": "Sintel",
+      "description": "A lonely young woman searches for the baby dragon she once rescued.",
+      "thumbnailUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/Sintel.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+      "durationSec": 888,
+      "categoryId": "fantasy",
+      "tags": ["3d", "fantasy"],
+      "isPremium": false
+    },
+    {
+      "id": "elephants-dream",
+      "title": "Elephants Dream",
+      "description": "Two men explore a surreal, ever-changing mechanical world.",
+      "thumbnailUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      "durationSec": 653,
+      "categoryId": "fantasy",
+      "tags": ["3d", "surreal"],
+      "isPremium": false
+    },
+    {
+      "id": "tears-of-steel",
+      "title": "Tears of Steel",
+      "description": "Warriors and scientists gather in Amsterdam to save the world from robots.",
+      "thumbnailUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/TearsOfSteel.jpg",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+      "durationSec": 734,
+      "categoryId": "scifi",
+      "tags": ["3d", "vfx", "robots"],
+      "isPremium": true
+    },
+    {
+      "id": "big-buck-bunny-hls",
+      "title": "Big Buck Bunny (HLS)",
+      "description": "Same film streamed as HLS (.m3u8) to show adaptive streaming support.",
+      "thumbnailUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg",
+      "videoUrl": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+      "durationSec": 596,
+      "categoryId": "trending",
+      "tags": ["3d", "hls"],
+      "isPremium": false
+    }
+  ]
+}
