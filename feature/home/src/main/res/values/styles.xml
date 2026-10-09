@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Pill tab under the Home header (For You, New, ...). -->
+    <!-- Pill tab under the Home header (For You, New, ...). Figma: 14/2dp padding plus a 1dp border
+         outside it; Android draws the stroke inside the bounds, so the padding includes it. -->
     <style name="Widget.ShortFilm.HomeTab" parent="">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginEnd">12dp</item>
         <item name="android:background">@drawable/bg_home_tab</item>
-        <item name="android:paddingStart">14dp</item>
-        <item name="android:paddingEnd">14dp</item>
-        <item name="android:paddingTop">2dp</item>
-        <item name="android:paddingBottom">2dp</item>
+        <item name="android:paddingStart">15dp</item>
+        <item name="android:paddingEnd">15dp</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:paddingBottom">3dp</item>
         <item name="android:textAppearance">@style/TextAppearance.ShortFilm.Tab</item>
         <item name="android:textColor">@color/home_tab_text</item>
     </style>

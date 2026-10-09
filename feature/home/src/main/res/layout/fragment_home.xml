@@ -133,7 +133,7 @@
                     <HorizontalScrollView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="16dp"
                         android:clipToPadding="false"
                         android:paddingStart="@dimen/sf_screen_padding"
                         android:paddingEnd="4dp"
@@ -220,7 +220,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/sf_screen_padding"
-                    android:layout_marginBottom="5dp"
                     app:indicatorActiveColor="@color/sf_white"
                     app:indicatorInactiveColor="@color/sf_white_35"
                     app:layout_constraintBottom_toBottomOf="@id/layout_banner_info"

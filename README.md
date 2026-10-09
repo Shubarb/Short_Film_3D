@@ -117,7 +117,7 @@ Tab Home chia phim thành các mục (`BuildHomeFeedUseCase`): banner là 4 phim
 
 Luồng dữ liệu:
 
-1. Lần đầu mở app (hoặc offline) hiển thị catalog mặc định đóng gói trong `core/data/src/main/res/raw/default_film_catalog.json`.
+1. Lần đầu mở app (hoặc offline) hiển thị catalog mặc định đóng gói trong `core/data/src/main/res/raw/default_film_catalog.json`. Ảnh của catalog này tạm lấy từ Figma (`core/data/src/main/res/drawable-nodpi/demo_*`, URL dạng `android.resource://com.short.drama.ai/drawable/demo_banner`), sẽ thay bằng ảnh thật khi có data.
 2. Home gọi `fetchAndActivate()` nền; kéo để làm mới gọi lại.
 3. Lắng nghe real-time update của Remote Config: sửa `film_catalog` trên console và publish là danh sách cập nhật ngay khi app đang mở.
 4. Nếu JSON trên console bị lỗi cú pháp, app log lỗi và quay về catalog mặc định thay vì hiển thị trống.

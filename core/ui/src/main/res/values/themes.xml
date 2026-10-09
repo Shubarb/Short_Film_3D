@@ -15,6 +15,12 @@
         <item name="android:statusBarColor">@color/sf_background</item>
         <item name="android:navigationBarColor">@color/sf_background</item>
         <item name="android:windowLightStatusBar">false</item>
+        <item name="android:textViewStyle">@style/Widget.ShortFilm.TextView</item>
+    </style>
+
+    <!-- Figma sizes text boxes by line height only, so drop Android's extra font padding everywhere. -->
+    <style name="Widget.ShortFilm.TextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:includeFontPadding">false</item>
     </style>
 
     <style name="Theme.ShortFilm.Player">
