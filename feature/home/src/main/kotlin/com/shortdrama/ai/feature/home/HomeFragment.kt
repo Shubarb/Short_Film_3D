@@ -68,6 +68,8 @@ class HomeFragment : BaseMviFragment<FragmentHomeBinding, HomeIntent, HomeState,
             homeTabs().forEach { (tab, view) ->
                 view.setOnClickListener { dispatch(HomeIntent.SelectTab(tab)) }
             }
+            listOf(blurTabForYou, blurTabNew, blurTabOriginal, blurTabRanking, blurTabCategory)
+                .forEach { it.setBlurTarget(blurBanner) }
             swipeRefresh.setProgressViewOffset(false, 0, resources.getDimensionPixelSize(R.dimen.home_refresh_offset))
             swipeRefresh.setOnRefreshListener { dispatch(HomeIntent.Refresh) }
             buttonRetry.setOnClickListener { dispatch(HomeIntent.Refresh) }

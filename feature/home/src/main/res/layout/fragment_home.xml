@@ -27,20 +27,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/pager_banner"
+                <!-- The pill tabs blur the banner behind them (Figma backdrop-blur 5px). -->
+                <com.shortdrama.ai.core.ui.widget.BlurTargetLayout
+                    android:id="@+id/blur_banner"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     app:layout_constraintDimensionRatio="360:505"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/pager_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </com.shortdrama.ai.core.ui.widget.BlurTargetLayout>
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="144dp"
                     android:background="@drawable/bg_hero_bottom_scrim"
-                    app:layout_constraintBottom_toBottomOf="@id/pager_banner"
+                    app:layout_constraintBottom_toBottomOf="@id/blur_banner"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -145,30 +152,55 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:id="@+id/tab_for_you"
-                                style="@style/Widget.ShortFilm.HomeTab"
-                                android:text="@string/home_tab_for_you" />
+                            <com.shortdrama.ai.core.ui.widget.BlurBackdropLayout
+                                android:id="@+id/blur_tab_for_you"
+                                style="@style/Widget.ShortFilm.HomeTabGlass">
 
-                            <TextView
-                                android:id="@+id/tab_new"
-                                style="@style/Widget.ShortFilm.HomeTab"
-                                android:text="@string/home_tab_new" />
+                                <TextView
+                                    android:id="@+id/tab_for_you"
+                                    style="@style/Widget.ShortFilm.HomeTab"
+                                    android:text="@string/home_tab_for_you" />
+                            </com.shortdrama.ai.core.ui.widget.BlurBackdropLayout>
 
-                            <TextView
-                                android:id="@+id/tab_original"
-                                style="@style/Widget.ShortFilm.HomeTab"
-                                android:text="@string/home_tab_original" />
+                            <com.shortdrama.ai.core.ui.widget.BlurBackdropLayout
+                                android:id="@+id/blur_tab_new"
+                                style="@style/Widget.ShortFilm.HomeTabGlass">
 
-                            <TextView
-                                android:id="@+id/tab_ranking"
-                                style="@style/Widget.ShortFilm.HomeTab"
-                                android:text="@string/home_tab_ranking" />
+                                <TextView
+                                    android:id="@+id/tab_new"
+                                    style="@style/Widget.ShortFilm.HomeTab"
+                                    android:text="@string/home_tab_new" />
+                            </com.shortdrama.ai.core.ui.widget.BlurBackdropLayout>
 
-                            <TextView
-                                android:id="@+id/tab_category"
-                                style="@style/Widget.ShortFilm.HomeTab"
-                                android:text="@string/home_tab_category" />
+                            <com.shortdrama.ai.core.ui.widget.BlurBackdropLayout
+                                android:id="@+id/blur_tab_original"
+                                style="@style/Widget.ShortFilm.HomeTabGlass">
+
+                                <TextView
+                                    android:id="@+id/tab_original"
+                                    style="@style/Widget.ShortFilm.HomeTab"
+                                    android:text="@string/home_tab_original" />
+                            </com.shortdrama.ai.core.ui.widget.BlurBackdropLayout>
+
+                            <com.shortdrama.ai.core.ui.widget.BlurBackdropLayout
+                                android:id="@+id/blur_tab_ranking"
+                                style="@style/Widget.ShortFilm.HomeTabGlass">
+
+                                <TextView
+                                    android:id="@+id/tab_ranking"
+                                    style="@style/Widget.ShortFilm.HomeTab"
+                                    android:text="@string/home_tab_ranking" />
+                            </com.shortdrama.ai.core.ui.widget.BlurBackdropLayout>
+
+                            <com.shortdrama.ai.core.ui.widget.BlurBackdropLayout
+                                android:id="@+id/blur_tab_category"
+                                style="@style/Widget.ShortFilm.HomeTabGlass">
+
+                                <TextView
+                                    android:id="@+id/tab_category"
+                                    style="@style/Widget.ShortFilm.HomeTab"
+                                    android:text="@string/home_tab_category" />
+                            </com.shortdrama.ai.core.ui.widget.BlurBackdropLayout>
                         </LinearLayout>
                     </HorizontalScrollView>
                 </LinearLayout>
@@ -180,7 +212,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/sf_screen_padding"
                     android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="@id/pager_banner"
+                    app:layout_constraintBottom_toBottomOf="@id/blur_banner"
                     app:layout_constraintStart_toStartOf="parent">
 
                     <TextView
