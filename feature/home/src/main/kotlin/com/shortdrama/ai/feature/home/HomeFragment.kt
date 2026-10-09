@@ -3,7 +3,9 @@ package com.shortdrama.ai.feature.home
 import android.view.View
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -46,12 +48,22 @@ class HomeFragment : BaseMviFragment<FragmentHomeBinding, HomeIntent, HomeState,
     override fun setupViews() {
         super.setupViews()
         with(binding) {
-            ViewCompat.setOnApplyWindowInsetsListener(layoutTopBar) { view, insets ->
+            ViewCompat.setOnApplyWindowInsetsListener(root) { _, insets ->
                 val statusBars = insets.getInsets(WindowInsetsCompat.Type.statusBars())
-                view.updatePadding(top = resources.getDimensionPixelSize(R.dimen.home_top_bar_padding) + statusBars.top)
+                layoutTopBar.updatePadding(
+                    top = resources.getDimensionPixelSize(R.dimen.home_top_bar_padding) + statusBars.top,
+                )
+                viewStatusBarScrim.updateLayoutParams { height = statusBars.top }
                 insets
             }
-            ViewCompat.requestApplyInsets(layoutTopBar)
+            ViewCompat.requestApplyInsets(root)
+            // Fade the status bar backing in while the header scrolls away.
+            scrollContent.setOnScrollChangeListener(
+                NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, _ ->
+                    val fadeDistance = layoutTopBar.height.coerceAtLeast(1)
+                    viewStatusBarScrim.alpha = (scrollY.toFloat() / fadeDistance).coerceIn(0f, 1f)
+                },
+            )
             textGreeting.setText(greetingRes())
 
             pagerBanner.adapter = bannerAdapter

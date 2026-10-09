@@ -1,324 +1,338 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Home tab, "For You" content (Figma "Main/For u"). -->
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/swipe_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?android:colorBackground"
     tools:context=".HomeFragment">
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scroll_content"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingBottom="@dimen/sf_bottom_nav_content_inset">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/sf_bottom_nav_content_inset">
 
-            <!-- Banner carousel with the header and tabs drawn over it. -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_hero"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <!-- The pill tabs blur the banner behind them (Figma backdrop-blur 5px). -->
-                <com.shortdrama.ai.core.ui.widget.BlurTargetLayout
-                    android:id="@+id/blur_banner"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintDimensionRatio="360:505"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                <!-- Banner carousel with the header and tabs drawn over it. -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_hero"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/pager_banner"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </com.shortdrama.ai.core.ui.widget.BlurTargetLayout>
+                    <!-- The pill tabs blur the banner behind them (Figma backdrop-blur 5px). -->
+                    <com.shortdrama.ai.core.ui.widget.BlurTargetLayout
+                        android:id="@+id/blur_banner"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintDimensionRatio="360:505"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="144dp"
-                    android:background="@drawable/bg_hero_bottom_scrim"
-                    app:layout_constraintBottom_toBottomOf="@id/blur_banner"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <View
-                    android:id="@+id/view_top_scrim"
-                    android:layout_width="0dp"
-                    android:layout_height="166dp"
-                    android:background="@drawable/bg_hero_top_scrim"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <!-- Status bar inset is added to this padding at runtime. -->
-                <LinearLayout
-                    android:id="@+id/layout_top_bar"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingTop="@dimen/home_top_bar_padding"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:layout_marginEnd="4dp"
-                            android:contentDescription="@null"
-                            android:src="@drawable/img_ornament_cloud"
-                            android:translationY="-2dp" />
-
-                        <LinearLayout
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/pager_banner"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            android:paddingStart="@dimen/sf_screen_padding"
-                            android:paddingEnd="@dimen/sf_screen_padding">
+                            android:layout_height="match_parent" />
+                    </com.shortdrama.ai.core.ui.widget.BlurTargetLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="144dp"
+                        android:background="@drawable/bg_hero_bottom_scrim"
+                        app:layout_constraintBottom_toBottomOf="@id/blur_banner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <View
+                        android:id="@+id/view_top_scrim"
+                        android:layout_width="0dp"
+                        android:layout_height="166dp"
+                        android:background="@drawable/bg_hero_top_scrim"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!-- Status bar inset is added to this padding at runtime. -->
+                    <LinearLayout
+                        android:id="@+id/layout_top_bar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/home_top_bar_padding"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
                             <ImageView
-                                android:layout_width="32dp"
-                                android:layout_height="32dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_marginEnd="4dp"
                                 android:contentDescription="@null"
-                                android:src="@drawable/img_brand_logo" />
+                                android:src="@drawable/img_ornament_cloud"
+                                android:translationY="-2dp" />
 
                             <LinearLayout
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingStart="@dimen/sf_screen_padding"
+                                android:paddingEnd="@dimen/sf_screen_padding">
 
-                                <TextView
-                                    android:id="@+id/text_greeting"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:maxLines="1"
-                                    android:textAppearance="@style/TextAppearance.ShortFilm.Subtitle3"
-                                    android:textColor="@color/sf_blue_2"
-                                    tools:text="@string/home_greeting_morning" />
+                                <ImageView
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:contentDescription="@null"
+                                    android:src="@drawable/img_brand_logo" />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
+                                <LinearLayout
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:maxLines="1"
-                                    android:text="@string/home_brand"
-                                    android:textAppearance="@style/TextAppearance.ShortFilm.Heading2" />
+                                    android:layout_marginStart="8dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/text_greeting"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:maxLines="1"
+                                        android:textAppearance="@style/TextAppearance.ShortFilm.Subtitle3"
+                                        android:textColor="@color/sf_blue_2"
+                                        tools:text="@string/home_greeting_morning" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:maxLines="1"
+                                        android:text="@string/home_brand"
+                                        android:textAppearance="@style/TextAppearance.ShortFilm.Heading2" />
+                                </LinearLayout>
+
+                                <ImageButton
+                                    android:id="@+id/button_search"
+                                    style="@style/Widget.ShortFilm.HeaderButton"
+                                    android:contentDescription="@string/home_search"
+                                    android:src="@drawable/ic_search" />
+
+                                <ImageButton
+                                    android:id="@+id/button_notifications"
+                                    style="@style/Widget.ShortFilm.HeaderButton"
+                                    android:layout_marginStart="12dp"
+                                    android:contentDescription="@string/home_notifications"
+                                    android:src="@drawable/ic_bell" />
                             </LinearLayout>
+                        </FrameLayout>
 
-                            <ImageButton
-                                android:id="@+id/button_search"
-                                style="@style/Widget.ShortFilm.HeaderButton"
-                                android:contentDescription="@string/home_search"
-                                android:src="@drawable/ic_search" />
+                        <HorizontalScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:clipToPadding="false"
+                            android:paddingStart="@dimen/sf_screen_padding"
+                            android:paddingEnd="4dp"
+                            android:scrollbars="none">
 
-                            <ImageButton
-                                android:id="@+id/button_notifications"
-                                style="@style/Widget.ShortFilm.HeaderButton"
-                                android:layout_marginStart="12dp"
-                                android:contentDescription="@string/home_notifications"
-                                android:src="@drawable/ic_bell" />
-                        </LinearLayout>
-                    </FrameLayout>
+                            <LinearLayout
+                                android:id="@+id/layout_tabs"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
 
-                    <HorizontalScrollView
-                        android:layout_width="match_parent"
+                                <com.shortdrama.ai.core.ui.widget.BlurBackdropLayout
+                                    android:id="@+id/blur_tab_for_you"
+                                    style="@style/Widget.ShortFilm.HomeTabGlass">
+
+                                    <TextView
+                                        android:id="@+id/tab_for_you"
+                                        style="@style/Widget.ShortFilm.HomeTab"
+                                        android:text="@string/home_tab_for_you" />
+                                </com.shortdrama.ai.core.ui.widget.BlurBackdropLayout>
+
+                                <com.shortdrama.ai.core.ui.widget.BlurBackdropLayout
+                                    android:id="@+id/blur_tab_new"
+                                    style="@style/Widget.ShortFilm.HomeTabGlass">
+
+                                    <TextView
+                                        android:id="@+id/tab_new"
+                                        style="@style/Widget.ShortFilm.HomeTab"
+                                        android:text="@string/home_tab_new" />
+                                </com.shortdrama.ai.core.ui.widget.BlurBackdropLayout>
+
+                                <com.shortdrama.ai.core.ui.widget.BlurBackdropLayout
+                                    android:id="@+id/blur_tab_original"
+                                    style="@style/Widget.ShortFilm.HomeTabGlass">
+
+                                    <TextView
+                                        android:id="@+id/tab_original"
+                                        style="@style/Widget.ShortFilm.HomeTab"
+                                        android:text="@string/home_tab_original" />
+                                </com.shortdrama.ai.core.ui.widget.BlurBackdropLayout>
+
+                                <com.shortdrama.ai.core.ui.widget.BlurBackdropLayout
+                                    android:id="@+id/blur_tab_ranking"
+                                    style="@style/Widget.ShortFilm.HomeTabGlass">
+
+                                    <TextView
+                                        android:id="@+id/tab_ranking"
+                                        style="@style/Widget.ShortFilm.HomeTab"
+                                        android:text="@string/home_tab_ranking" />
+                                </com.shortdrama.ai.core.ui.widget.BlurBackdropLayout>
+
+                                <com.shortdrama.ai.core.ui.widget.BlurBackdropLayout
+                                    android:id="@+id/blur_tab_category"
+                                    style="@style/Widget.ShortFilm.HomeTabGlass">
+
+                                    <TextView
+                                        android:id="@+id/tab_category"
+                                        style="@style/Widget.ShortFilm.HomeTab"
+                                        android:text="@string/home_tab_category" />
+                                </com.shortdrama.ai.core.ui.widget.BlurBackdropLayout>
+                            </LinearLayout>
+                        </HorizontalScrollView>
+                    </LinearLayout>
+
+                    <!-- Details of the banner on screen. -->
+                    <LinearLayout
+                        android:id="@+id/layout_banner_info"
+                        android:layout_width="207dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:clipToPadding="false"
-                        android:paddingStart="@dimen/sf_screen_padding"
-                        android:paddingEnd="4dp"
-                        android:scrollbars="none">
+                        android:layout_marginStart="@dimen/sf_screen_padding"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="@id/blur_banner"
+                        app:layout_constraintStart_toStartOf="parent">
 
-                        <LinearLayout
-                            android:id="@+id/layout_tabs"
+                        <TextView
+                            android:id="@+id/text_banner_rating"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:drawablePadding="2dp"
+                            android:gravity="center_vertical"
+                            android:textAppearance="@style/TextAppearance.ShortFilm.Subtitle2"
+                            app:drawableStartCompat="@drawable/ic_star_rounded"
+                            tools:text="9.2" />
 
-                            <com.shortdrama.ai.core.ui.widget.BlurBackdropLayout
-                                android:id="@+id/blur_tab_for_you"
-                                style="@style/Widget.ShortFilm.HomeTabGlass">
+                        <TextView
+                            android:id="@+id/text_banner_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:ellipsize="end"
+                            android:maxLines="2"
+                            android:textAppearance="@style/TextAppearance.ShortFilm.Subtitle1"
+                            android:textColor="@color/sf_white_90"
+                            tools:text="Swallowed Star: Battle Beyond the Stars" />
 
-                                <TextView
-                                    android:id="@+id/tab_for_you"
-                                    style="@style/Widget.ShortFilm.HomeTab"
-                                    android:text="@string/home_tab_for_you" />
-                            </com.shortdrama.ai.core.ui.widget.BlurBackdropLayout>
+                        <TextView
+                            android:id="@+id/text_banner_genres"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:textAppearance="@style/TextAppearance.ShortFilm.Body2"
+                            tools:text="Billionaire • Romance" />
+                    </LinearLayout>
 
-                            <com.shortdrama.ai.core.ui.widget.BlurBackdropLayout
-                                android:id="@+id/blur_tab_new"
-                                style="@style/Widget.ShortFilm.HomeTabGlass">
-
-                                <TextView
-                                    android:id="@+id/tab_new"
-                                    style="@style/Widget.ShortFilm.HomeTab"
-                                    android:text="@string/home_tab_new" />
-                            </com.shortdrama.ai.core.ui.widget.BlurBackdropLayout>
-
-                            <com.shortdrama.ai.core.ui.widget.BlurBackdropLayout
-                                android:id="@+id/blur_tab_original"
-                                style="@style/Widget.ShortFilm.HomeTabGlass">
-
-                                <TextView
-                                    android:id="@+id/tab_original"
-                                    style="@style/Widget.ShortFilm.HomeTab"
-                                    android:text="@string/home_tab_original" />
-                            </com.shortdrama.ai.core.ui.widget.BlurBackdropLayout>
-
-                            <com.shortdrama.ai.core.ui.widget.BlurBackdropLayout
-                                android:id="@+id/blur_tab_ranking"
-                                style="@style/Widget.ShortFilm.HomeTabGlass">
-
-                                <TextView
-                                    android:id="@+id/tab_ranking"
-                                    style="@style/Widget.ShortFilm.HomeTab"
-                                    android:text="@string/home_tab_ranking" />
-                            </com.shortdrama.ai.core.ui.widget.BlurBackdropLayout>
-
-                            <com.shortdrama.ai.core.ui.widget.BlurBackdropLayout
-                                android:id="@+id/blur_tab_category"
-                                style="@style/Widget.ShortFilm.HomeTabGlass">
-
-                                <TextView
-                                    android:id="@+id/tab_category"
-                                    style="@style/Widget.ShortFilm.HomeTab"
-                                    android:text="@string/home_tab_category" />
-                            </com.shortdrama.ai.core.ui.widget.BlurBackdropLayout>
-                        </LinearLayout>
-                    </HorizontalScrollView>
-                </LinearLayout>
-
-                <!-- Details of the banner on screen. -->
-                <LinearLayout
-                    android:id="@+id/layout_banner_info"
-                    android:layout_width="207dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/sf_screen_padding"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="@id/blur_banner"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                    <TextView
-                        android:id="@+id/text_banner_rating"
+                    <com.shortdrama.ai.core.ui.widget.PagerIndicatorView
+                        android:id="@+id/indicator_banner"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawablePadding="2dp"
-                        android:gravity="center_vertical"
-                        android:textAppearance="@style/TextAppearance.ShortFilm.Subtitle2"
-                        app:drawableStartCompat="@drawable/ic_star_rounded"
-                        tools:text="9.2" />
+                        android:layout_marginEnd="@dimen/sf_screen_padding"
+                        app:indicatorActiveColor="@color/sf_white"
+                        app:indicatorInactiveColor="@color/sf_white_35"
+                        app:layout_constraintBottom_toBottomOf="@id/layout_banner_info"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <TextView
-                        android:id="@+id/text_banner_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:ellipsize="end"
-                        android:maxLines="2"
-                        android:textAppearance="@style/TextAppearance.ShortFilm.Subtitle1"
-                        android:textColor="@color/sf_white_90"
-                        tools:text="Swallowed Star: Battle Beyond the Stars" />
+                <TextView
+                    android:id="@+id/text_section_big_hit"
+                    style="@style/Widget.ShortFilm.SectionTitle"
+                    android:layout_marginStart="@dimen/sf_screen_padding"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/home_section_big_hit" />
 
-                    <TextView
-                        android:id="@+id/text_banner_genres"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        android:textAppearance="@style/TextAppearance.ShortFilm.Body2"
-                        tools:text="Billionaire • Romance" />
-                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_big_hit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"
+                    android:paddingStart="@dimen/sf_screen_padding"
+                    android:paddingEnd="@dimen/sf_screen_padding"
+                    tools:itemCount="4"
+                    tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    tools:listitem="@layout/item_film_landscape"
+                    tools:spanCount="2" />
 
-                <com.shortdrama.ai.core.ui.widget.PagerIndicatorView
-                    android:id="@+id/indicator_banner"
+                <TextView
+                    android:id="@+id/text_section_recommend"
+                    style="@style/Widget.ShortFilm.SectionTitle"
+                    android:layout_marginStart="@dimen/sf_screen_padding"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/home_section_recommend" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_recommend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"
+                    android:paddingStart="@dimen/sf_screen_padding"
+                    android:paddingEnd="@dimen/sf_screen_padding"
+                    tools:itemCount="4"
+                    tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    tools:listitem="@layout/item_film_poster"
+                    tools:spanCount="2" />
+
+                <TextView
+                    android:id="@+id/text_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sf_space_xl"
+                    android:gravity="center"
+                    android:text="@string/home_empty"
+                    android:textAppearance="@style/TextAppearance.ShortFilm.Body2"
+                    android:visibility="gone" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_retry"
+                    style="@style/Widget.Material3.Button.TonalButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/sf_screen_padding"
-                    app:indicatorActiveColor="@color/sf_white"
-                    app:indicatorInactiveColor="@color/sf_white_35"
-                    app:layout_constraintBottom_toBottomOf="@id/layout_banner_info"
-                    app:layout_constraintEnd_toEndOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/sf_space_m"
+                    android:text="@string/sf_retry"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-            <TextView
-                android:id="@+id/text_section_big_hit"
-                style="@style/Widget.ShortFilm.SectionTitle"
-                android:layout_marginStart="@dimen/sf_screen_padding"
-                android:layout_marginTop="24dp"
-                android:text="@string/home_section_big_hit" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_big_hit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:nestedScrollingEnabled="false"
-                android:overScrollMode="never"
-                android:paddingStart="@dimen/sf_screen_padding"
-                android:paddingEnd="@dimen/sf_screen_padding"
-                tools:itemCount="4"
-                tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                tools:listitem="@layout/item_film_landscape"
-                tools:spanCount="2" />
-
-            <TextView
-                android:id="@+id/text_section_recommend"
-                style="@style/Widget.ShortFilm.SectionTitle"
-                android:layout_marginStart="@dimen/sf_screen_padding"
-                android:layout_marginTop="16dp"
-                android:text="@string/home_section_recommend" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_recommend"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:nestedScrollingEnabled="false"
-                android:overScrollMode="never"
-                android:paddingStart="@dimen/sf_screen_padding"
-                android:paddingEnd="@dimen/sf_screen_padding"
-                tools:itemCount="4"
-                tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                tools:listitem="@layout/item_film_poster"
-                tools:spanCount="2" />
-
-            <TextView
-                android:id="@+id/text_empty"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/sf_space_xl"
-                android:gravity="center"
-                android:text="@string/home_empty"
-                android:textAppearance="@style/TextAppearance.ShortFilm.Body2"
-                android:visibility="gone" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_retry"
-                style="@style/Widget.Material3.Button.TonalButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/sf_space_m"
-                android:text="@string/sf_retry"
-                android:visibility="gone" />
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <!-- Status bar backing: transparent over the banner, fades in once content scrolls under it.
+         Height is the status bar inset, set at runtime. -->
+    <View
+        android:id="@+id/view_status_bar_scrim"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:alpha="0"
+        android:background="?android:colorBackground" />
+</FrameLayout>
