@@ -69,19 +69,23 @@
                         android:id="@+id/layout_top_bar"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:clipChildren="false"
                         android:orientation="vertical"
                         android:paddingTop="@dimen/home_top_bar_padding"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
+                        <!-- Fixed to the Figma header height (44dp) so the 90dp ornament overflows behind the
+                             tabs instead of pushing them down. -->
                         <FrameLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="44dp"
+                            android:clipChildren="false">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="160dp"
+                                android:layout_height="90dp"
                                 android:layout_gravity="end"
                                 android:layout_marginEnd="4dp"
                                 android:contentDescription="@null"
@@ -90,7 +94,7 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:gravity="center_vertical"
                                 android:orientation="horizontal"
                                 android:paddingStart="@dimen/sf_screen_padding"
@@ -112,7 +116,8 @@
                                     <TextView
                                         android:id="@+id/text_greeting"
                                         android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="16dp"
+                                        android:gravity="center_vertical"
                                         android:maxLines="1"
                                         android:textAppearance="@style/TextAppearance.ShortFilm.Subtitle3"
                                         android:textColor="@color/sf_blue_2"
@@ -120,7 +125,8 @@
 
                                     <TextView
                                         android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
+                                        android:layout_height="28dp"
+                                        android:gravity="center_vertical"
                                         android:maxLines="1"
                                         android:text="@string/home_brand"
                                         android:textAppearance="@style/TextAppearance.ShortFilm.Heading2" />

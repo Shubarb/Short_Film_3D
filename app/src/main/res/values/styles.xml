@@ -6,6 +6,9 @@
         <item name="android:layout_height">52dp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:background">@drawable/bg_bottom_nav_item</item>
+        <!-- Figma: 24dp icon, 2dp gap and a 16dp label centered in the 52dp pill, 5dp clear above and below. -->
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
         <item name="android:drawablePadding">2dp</item>
         <item name="android:gravity">center</item>
         <item name="android:maxLines">1</item>
