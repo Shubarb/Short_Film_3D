@@ -50,10 +50,15 @@ class HomeFragment : BaseMviFragment<FragmentHomeBinding, HomeIntent, HomeState,
         with(binding) {
             ViewCompat.setOnApplyWindowInsetsListener(root) { _, insets ->
                 val statusBars = insets.getInsets(WindowInsetsCompat.Type.statusBars())
+                val navigationBars = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
                 layoutTopBar.updatePadding(
                     top = resources.getDimensionPixelSize(R.dimen.home_top_bar_padding) + statusBars.top,
                 )
                 viewStatusBarScrim.updateLayoutParams { height = statusBars.top }
+                scrollContent.updatePadding(
+                    bottom = resources.getDimensionPixelSize(CoreUiR.dimen.sf_bottom_nav_content_inset) +
+                        navigationBars.bottom,
+                )
                 insets
             }
             ViewCompat.requestApplyInsets(root)
