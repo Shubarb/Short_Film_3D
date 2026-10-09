@@ -1,7 +1,7 @@
 package com.shortdrama.ai.feature.home
 
 import androidx.lifecycle.viewModelScope
-import com.shortdrama.ai.core.domain.usecase.FilterFilmsByCategoryUseCase
+import com.shortdrama.ai.core.domain.usecase.BuildHomeFeedUseCase
 import com.shortdrama.ai.core.domain.usecase.ObserveFilmCatalogUseCase
 import com.shortdrama.ai.core.domain.usecase.RefreshFilmCatalogUseCase
 import com.shortdrama.ai.core.ui.mvi.MviViewModel
@@ -15,22 +15,19 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     observeFilmCatalog: ObserveFilmCatalogUseCase,
     private val refreshFilmCatalog: RefreshFilmCatalogUseCase,
-    private val filterFilmsByCategory: FilterFilmsByCategoryUseCase,
+    private val buildHomeFeed: BuildHomeFeedUseCase,
 ) : MviViewModel<HomeIntent, HomeState, HomeEffect>(HomeState()) {
 
     init {
         observeFilmCatalog()
             .onEach { catalog ->
                 setState {
-                    // Keep the selected tab only if it still exists in the new catalog.
-                    val selected = selectedCategoryId
-                        ?.takeIf { id -> catalog.categories.any { it.id == id } }
+                    val feed = buildHomeFeed(catalog.films)
                     copy(
                         isLoading = false,
-                        categories = catalog.categories,
-                        selectedCategoryId = selected,
-                        allFilms = catalog.films,
-                        films = filterFilmsByCategory(catalog.films, selected),
+                        feed = feed,
+                        // Keep the banner on screen if it still exists in the new catalog.
+                        bannerPosition = bannerPosition.coerceIn(0, (feed.banners.size - 1).coerceAtLeast(0)),
                     )
                 }
             }
@@ -43,12 +40,8 @@ class HomeViewModel @Inject constructor(
     override fun handleIntent(intent: HomeIntent) {
         when (intent) {
             HomeIntent.Refresh -> refresh(userInitiated = true)
-            is HomeIntent.SelectCategory -> setState {
-                copy(
-                    selectedCategoryId = intent.categoryId,
-                    films = filterFilmsByCategory(allFilms, intent.categoryId),
-                )
-            }
+            is HomeIntent.SelectTab -> setState { copy(selectedTab = intent.tab) }
+            is HomeIntent.BannerChanged -> setState { copy(bannerPosition = intent.position) }
             is HomeIntent.OpenFilm -> sendEffect(HomeEffect.NavigateToPlayer(intent.filmId))
         }
     }

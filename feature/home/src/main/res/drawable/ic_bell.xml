@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- solar:bell-linear (Figma). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="20dp"
+    android:height="20dp"
+    android:viewportWidth="20"
+    android:viewportHeight="20">
+    <path
+        android:pathData="M15.6243,8.09127V7.50409C15.6243,4.28015 13.1062,1.66663 10,1.66663C6.8938,1.66663 4.37573,4.28015 4.37573,7.50409V8.09127C4.37573,8.79596 4.17477,9.48479 3.79817,10.0711L2.8753,11.5079C2.03235,12.8202 2.67588,14.604 4.14197,15.019C7.97728,16.1047 12.0227,16.1047 15.858,15.019C17.3242,14.604 17.9677,12.8202 17.1247,11.5079L16.2018,10.0711C15.8252,9.48479 15.6243,8.79596 15.6243,8.09127Z"
+        android:strokeWidth="1.25"
+        android:strokeColor="@android:color/white"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M6.25,15.8333C6.79586,17.2898 8.26872,18.3333 10,18.3333C11.7312,18.3333 13.2042,17.2898 13.75,15.8333"
+        android:strokeWidth="1.25"
+        android:strokeColor="@android:color/white"
+        android:strokeLineCap="round" />
+</vector>

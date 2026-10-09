@@ -22,6 +22,57 @@
         <item name="android:windowBackground">@android:color/black</item>
     </style>
 
+    <!-- Figma text styles (Plus Jakarta Sans). letterSpacing is in em. -->
+    <style name="TextAppearance.ShortFilm.Heading2" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/plus_jakarta_sans_bold</item>
+        <item name="fontFamily">@font/plus_jakarta_sans_bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="lineHeight">28sp</item>
+        <item name="android:textColor">@color/sf_white</item>
+    </style>
+
+    <style name="TextAppearance.ShortFilm.Subtitle1" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/plus_jakarta_sans_bold</item>
+        <item name="fontFamily">@font/plus_jakarta_sans_bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="lineHeight">26sp</item>
+        <item name="android:letterSpacing">0.0015</item>
+        <item name="android:textColor">@color/sf_white</item>
+    </style>
+
+    <style name="TextAppearance.ShortFilm.Subtitle2" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/plus_jakarta_sans_semibold</item>
+        <item name="fontFamily">@font/plus_jakarta_sans_semibold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="lineHeight">16sp</item>
+        <item name="android:letterSpacing">0.002</item>
+        <item name="android:textColor">@color/sf_white</item>
+    </style>
+
+    <style name="TextAppearance.ShortFilm.Subtitle3" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/plus_jakarta_sans_bold</item>
+        <item name="fontFamily">@font/plus_jakarta_sans_bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="lineHeight">16sp</item>
+        <item name="android:letterSpacing">0.002</item>
+        <item name="android:textColor">@color/sf_white</item>
+    </style>
+
+    <style name="TextAppearance.ShortFilm.Body2" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/plus_jakarta_sans_regular</item>
+        <item name="fontFamily">@font/plus_jakarta_sans_regular</item>
+        <item name="android:textSize">12sp</item>
+        <item name="lineHeight">16sp</item>
+        <item name="android:letterSpacing">0.002</item>
+        <item name="android:textColor">@color/sf_white_70</item>
+    </style>
+
+    <!-- Pill tab label: Subtitle3 with a 24sp line. -->
+    <style name="TextAppearance.ShortFilm.Tab" parent="TextAppearance.ShortFilm.Subtitle3">
+        <item name="lineHeight">24sp</item>
+        <item name="android:letterSpacing">0.0015</item>
+    </style>
+
     <style name="TextAppearance.ShortFilm.Badge" parent="TextAppearance.Material3.LabelSmall">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>

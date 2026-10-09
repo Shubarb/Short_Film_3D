@@ -26,4 +26,9 @@ fun FilmDto.toDomain(): Film = Film(
     categoryId = categoryId,
     tags = tags,
     isPremium = isPremium,
+    posterUrl = posterUrl.ifBlank { thumbnailUrl },
+    rating = rating?.takeIf { it > 0 }?.coerceAtMost(10.0),
+    releasedEpisodes = releasedEpisodes.coerceIn(0, totalEpisodes.coerceAtLeast(0)),
+    totalEpisodes = totalEpisodes.coerceAtLeast(0),
+    badge = badge.takeIf { it.isNotBlank() },
 )

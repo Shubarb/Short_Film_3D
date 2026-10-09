@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- "Recommend For You" card: 156x210 poster, optional corner badge, title and genres. -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image_poster"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="156:210"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.ShortFilm.Poster"
+        tools:src="@drawable/bg_thumbnail_placeholder" />
+
+    <View
+        android:id="@+id/view_scrim"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:background="@drawable/bg_card_scrim"
+        app:layout_constraintBottom_toBottomOf="@id/image_poster"
+        app:layout_constraintEnd_toEndOf="@id/image_poster"
+        app:layout_constraintStart_toStartOf="@id/image_poster" />
+
+    <TextView
+        android:id="@+id/text_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_badge_gradient"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:textAppearance="@style/TextAppearance.ShortFilm.Subtitle3"
+        android:textColor="@color/sf_text_on_gradient"
+        android:visibility="gone"
+        app:fontFamily="@font/plus_jakarta_sans_extrabold"
+        app:layout_constraintEnd_toEndOf="@id/image_poster"
+        app:layout_constraintTop_toTopOf="@id/image_poster"
+        tools:text="Top 10"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/text_episodes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:textAppearance="@style/TextAppearance.ShortFilm.Subtitle3"
+        android:textColor="@color/sf_white_90"
+        app:layout_constraintBottom_toBottomOf="@id/image_poster"
+        app:layout_constraintEnd_toEndOf="@id/image_poster"
+        tools:text="12/36 Ep" />
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textAppearance="@style/TextAppearance.ShortFilm.Subtitle3"
+        android:textColor="@color/sf_white_90"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_poster"
+        tools:text="Swallowed Star: Battle Beyond the Stars" />
+
+    <TextView
+        android:id="@+id/text_genres"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.ShortFilm.Body2"
+        android:textColor="@color/sf_white_45"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_title"
+        tools:text="Sci-Fi · 3D" />
+</androidx.constraintlayout.widget.ConstraintLayout>

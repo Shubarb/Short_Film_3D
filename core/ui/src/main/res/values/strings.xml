@@ -4,4 +4,7 @@
     <string name="sf_error_generic">Đã có lỗi xảy ra. Vui lòng thử lại.</string>
     <string name="sf_error_network">Không thể tải dữ liệu mới. Đang hiển thị dữ liệu đã lưu.</string>
     <string name="sf_premium">PREMIUM</string>
+    <!-- Suffix after the released episode count: "12" + "/36 Ep". -->
+    <string name="sf_episodes_total">/%1$d Ep</string>
+    <string name="sf_coming_soon">Sắp ra mắt</string>
 </resources>

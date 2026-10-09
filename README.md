@@ -19,7 +19,7 @@ App Android (Kotlin, XML views) xem phim ngắn 3D AI. Danh sách phim (link vid
 ## Cấu trúc module
 
 ```
-app/                 Application (Hilt), MainActivity, nav_graph gộp graph của các feature
+app/                 Application (Hilt), MainActivity, màn Main (bottom navigation), nav_graph
 build-logic/         Convention plugins: shortfilm.android.{application,library,feature,hilt}, shortfilm.jvm.library
 core/
   model/             (Kotlin thuần) Film, Category, FilmCatalog
@@ -28,7 +28,10 @@ core/
   common/            Dispatchers (qualifier + module), Logger
   ui/                Base MVI (MviViewModel, BaseMviFragment, BaseFragment), theme, extensions, DeepLinks
 feature/
-  home/              Danh sách phim: lọc theo category, pull-to-refresh
+  home/              Tab Home: banner, "Big Hit", "Recommend For You", pull-to-refresh
+  shorts/            Tab Short (màn trống, chờ UI)
+  library/           Tab Library (màn trống, chờ UI)
+  settings/          Tab Setting (màn trống, chờ UI)
   player/            Phát phim bằng ExoPlayer, fullscreen khi xoay ngang
 ```
 
@@ -42,6 +45,16 @@ core:data ──► core:domain, core:common
 ```
 
 Feature không phụ thuộc lẫn nhau; điều hướng giữa các feature bằng deep link (`shortfilm://player/{filmId}`, xem `core/ui/.../navigation/DeepLinks.kt`).
+
+## Màn Main
+
+`app/.../main/MainFragment` là màn bắt đầu: mỗi tab của bottom navigation là một fragment riêng từ module feature tương ứng (Home, Short, Library, Setting). Tab được add một lần rồi show/hide nên giữ nguyên trạng thái và vị trí cuộn khi đổi tab; bấm Back ở tab khác sẽ quay về Home.
+
+Bottom navigation nổi trên nội dung với nền kính mờ: `BlurTargetLayout` (bọc container các tab) ghi lại nội dung vào một RenderNode, `BlurBackdropLayout` vẽ lại phần nằm sau nó với `RenderEffect` blur. Blur cần Android 12+; máy cũ hơn dùng màu nền gần đặc. Nội dung cuộn của mỗi tab chừa `@dimen/sf_bottom_nav_content_inset` ở đáy để không bị thanh này che.
+
+App vẽ tràn dưới status bar (`enableEdgeToEdge`); màn nào cần tránh status bar thì tự cộng inset (Home cộng vào header).
+
+Font Plus Jakarta Sans (OFL) nằm trong `core/ui/src/main/res/font`, text style theo Figma là `TextAppearance.ShortFilm.*` trong `core/ui/.../themes.xml`, màu là `sf_*` trong `colors.xml`.
 
 ## MVI
 
@@ -90,9 +103,17 @@ Key: **`film_catalog`** (kiểu JSON). Ví dụ:
 | `films[].id` | ✓ | Duy nhất, dùng trong deep link |
 | `films[].videoUrl` | ✓ | MP4 hoặc HLS `.m3u8` |
 | `films[].categoryId` | | Khớp `categories[].id` để lọc |
+| `films[].thumbnailUrl` | | Ảnh ngang, dùng cho thẻ "Big Hit" |
+| `films[].posterUrl` | | Ảnh dọc cho banner và thẻ "Recommend For You"; thiếu thì dùng `thumbnailUrl` |
+| `films[].tags` | | Thể loại hiển thị, ví dụ `["Sci-Fi", "3D"]` |
+| `films[].rating` | | Điểm 0–10, hiện trên banner |
+| `films[].releasedEpisodes`, `films[].totalEpisodes` | | Hiện "12/36 Ep"; `totalEpisodes = 0` thì ẩn |
+| `films[].badge` | | Nhãn góc thẻ, ví dụ `"Top 10"`; để trống thì ẩn |
 | các trường khác | | Có giá trị mặc định, field lạ bị bỏ qua |
 
 Phim thiếu `id` hoặc `videoUrl` sẽ bị bỏ qua; `id` trùng chỉ giữ bản đầu.
+
+Tab Home chia phim thành các mục (`BuildHomeFeedUseCase`): banner là 4 phim đầu theo thứ tự trong JSON, "Big Hit" là 4 phim điểm cao nhất, "Recommend For You" là tất cả phim.
 
 Luồng dữ liệu:
 
@@ -108,5 +129,5 @@ Cách publish: Firebase Console → Remote Config → *Add parameter* → key `f
 ## Test
 
 ```
-./gradlew :core:data:testDebugUnitTest
+./gradlew :core:domain:test :core:data:testDebugUnitTest
 ```

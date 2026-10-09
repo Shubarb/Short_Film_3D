@@ -35,3 +35,6 @@ include(":core:ui")
 
 include(":feature:home")
 include(":feature:player")
+include(":feature:shorts")
+include(":feature:library")
+include(":feature:settings")

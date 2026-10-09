@@ -31,4 +31,9 @@ data class FilmDto(
     @SerialName("categoryId") val categoryId: String = "",
     @SerialName("tags") val tags: List<String> = emptyList(),
     @SerialName("isPremium") val isPremium: Boolean = false,
+    @SerialName("posterUrl") val posterUrl: String = "",
+    @SerialName("rating") val rating: Double? = null,
+    @SerialName("releasedEpisodes") val releasedEpisodes: Int = 0,
+    @SerialName("totalEpisodes") val totalEpisodes: Int = 0,
+    @SerialName("badge") val badge: String = "",
 )

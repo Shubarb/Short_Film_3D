@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "categories": [
     { "id": "trending", "title": "Trending" },
     { "id": "fantasy", "title": "Fantasy" },
@@ -14,8 +14,12 @@
       "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
       "durationSec": 596,
       "categoryId": "trending",
-      "tags": ["3d", "comedy"],
-      "isPremium": false
+      "tags": ["Comedy", "3D"],
+      "isPremium": false,
+      "rating": 9.2,
+      "releasedEpisodes": 12,
+      "totalEpisodes": 36,
+      "badge": "Top 10"
     },
     {
       "id": "sintel",
@@ -25,8 +29,11 @@
       "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
       "durationSec": 888,
       "categoryId": "fantasy",
-      "tags": ["3d", "fantasy"],
-      "isPremium": false
+      "tags": ["Fantasy", "3D"],
+      "isPremium": false,
+      "rating": 9.0,
+      "releasedEpisodes": 20,
+      "totalEpisodes": 40
     },
     {
       "id": "elephants-dream",
@@ -36,8 +43,11 @@
       "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
       "durationSec": 653,
       "categoryId": "fantasy",
-      "tags": ["3d", "surreal"],
-      "isPremium": false
+      "tags": ["Surreal", "3D"],
+      "isPremium": false,
+      "rating": 8.4,
+      "releasedEpisodes": 8,
+      "totalEpisodes": 24
     },
     {
       "id": "tears-of-steel",
@@ -47,8 +57,12 @@
       "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
       "durationSec": 734,
       "categoryId": "scifi",
-      "tags": ["3d", "vfx", "robots"],
-      "isPremium": true
+      "tags": ["Sci-Fi", "3D"],
+      "isPremium": true,
+      "rating": 8.8,
+      "releasedEpisodes": 12,
+      "totalEpisodes": 36,
+      "badge": "Top 10"
     },
     {
       "id": "big-buck-bunny-hls",
@@ -58,8 +72,11 @@
       "videoUrl": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
       "durationSec": 596,
       "categoryId": "trending",
-      "tags": ["3d", "hls"],
-      "isPremium": false
+      "tags": ["Comedy", "HLS"],
+      "isPremium": false,
+      "rating": 8.1,
+      "releasedEpisodes": 5,
+      "totalEpisodes": 30
     }
   ]
 }

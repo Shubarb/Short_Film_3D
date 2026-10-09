@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- akar-icons:search (Figma). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="20dp"
+    android:height="20dp"
+    android:viewportWidth="20"
+    android:viewportHeight="20">
+    <path
+        android:pathData="M17.5001,17.5L13.7617,13.755M15.8334,8.74996C15.8334,10.6286 15.0871,12.4303 13.7588,13.7586C12.4304,15.087 10.6287,15.8333 8.75008,15.8333C6.87146,15.8333 5.06979,15.087 3.74141,13.7586C2.41303,12.4303 1.66675,10.6286 1.66675,8.74996C1.66675,6.87134 2.41303,5.06967 3.74141,3.74129C5.06979,2.4129 6.87146,1.66663 8.75008,1.66663C10.6287,1.66663 12.4304,2.4129 13.7588,3.74129C15.0871,5.06967 15.8334,6.87134 15.8334,8.74996Z"
+        android:strokeWidth="1.25"
+        android:strokeColor="@android:color/white"
+        android:strokeLineCap="round" />
+</vector>

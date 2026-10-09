@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="home_title">Short Film</string>
-    <string name="home_category_all">Tất cả</string>
+    <string name="home_brand">Short Drama</string>
+    <string name="home_greeting_morning">Good Morning!</string>
+    <string name="home_greeting_afternoon">Good Afternoon!</string>
+    <string name="home_greeting_evening">Good Evening!</string>
+
+    <string name="home_tab_for_you">For You</string>
+    <string name="home_tab_new">New</string>
+    <string name="home_tab_original">Original</string>
+    <string name="home_tab_ranking">Ranking</string>
+    <string name="home_tab_category">Category</string>
+
+    <string name="home_section_big_hit">Big Hit</string>
+    <string name="home_section_recommend">Recommend For You</string>
+
+    <string name="home_genre_separator" translatable="false">" • "</string>
+    <string name="home_tag_separator" translatable="false">" · "</string>
+
+    <string name="home_search">Tìm kiếm</string>
+    <string name="home_notifications">Thông báo</string>
     <string name="home_empty">Chưa có phim nào.</string>
 </resources>

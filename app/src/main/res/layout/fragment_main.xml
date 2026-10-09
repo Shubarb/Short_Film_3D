@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Main screen: one fragment per tab, under a floating bottom navigation that blurs it. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:colorBackground"
+    tools:context=".main.MainFragment">
+
+    <com.shortdrama.ai.core.ui.widget.BlurTargetLayout
+        android:id="@+id/blur_target"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/container_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.shortdrama.ai.core.ui.widget.BlurTargetLayout>
+
+    <com.shortdrama.ai.core.ui.widget.BlurBackdropLayout
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sf_bottom_nav_height"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="@dimen/sf_screen_padding"
+        android:layout_marginEnd="@dimen/sf_screen_padding"
+        android:layout_marginBottom="@dimen/sf_bottom_nav_margin_bottom"
+        app:blurCornerRadius="32dp"
+        app:blurFallbackColor="@color/sf_glass_fallback"
+        app:blurOverlayColor="@color/sf_glass_overlay"
+        app:blurRadius="20dp"
+        app:blurStrokeColor="@color/sf_white_40"
+        app:blurStrokeWidth="0.5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tab_home"
+                    style="@style/Widget.ShortFilm.BottomNavItem"
+                    android:text="@string/main_tab_home"
+                    app:drawableTopCompat="@drawable/ic_nav_home" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tab_short"
+                    style="@style/Widget.ShortFilm.BottomNavItem"
+                    android:text="@string/main_tab_short"
+                    app:drawableTopCompat="@drawable/ic_nav_short" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tab_library"
+                    style="@style/Widget.ShortFilm.BottomNavItem"
+                    android:text="@string/main_tab_library"
+                    app:drawableTopCompat="@drawable/ic_nav_library" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tab_setting"
+                    style="@style/Widget.ShortFilm.BottomNavItem"
+                    android:text="@string/main_tab_setting"
+                    app:drawableTopCompat="@drawable/ic_nav_setting" />
+            </FrameLayout>
+        </LinearLayout>
+    </com.shortdrama.ai.core.ui.widget.BlurBackdropLayout>
+</FrameLayout>

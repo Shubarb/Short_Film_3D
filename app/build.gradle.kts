@@ -38,6 +38,9 @@ dependencies {
 
     implementation(projects.feature.home)
     implementation(projects.feature.player)
+    implementation(projects.feature.shorts)
+    implementation(projects.feature.library)
+    implementation(projects.feature.settings)
 
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
