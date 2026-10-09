@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Gap between the status bar and the header (Figma: 42dp header top under a 38dp status bar). -->
+    <dimen name="home_top_bar_padding">4dp</dimen>
+    <!-- Pull-to-refresh spinner rests below the header instead of under the status bar. -->
+    <dimen name="home_refresh_offset">120dp</dimen>
+</resources>

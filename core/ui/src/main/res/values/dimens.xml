@@ -6,4 +6,10 @@
     <dimen name="sf_space_l">16dp</dimen>
     <dimen name="sf_space_xl">24dp</dimen>
     <dimen name="sf_corner_card">12dp</dimen>
+
+    <dimen name="sf_screen_padding">16dp</dimen>
+    <dimen name="sf_bottom_nav_height">64dp</dimen>
+    <dimen name="sf_bottom_nav_margin_bottom">13dp</dimen>
+    <!-- Space a tab's scrolling content keeps free under the floating bottom navigation. -->
+    <dimen name="sf_bottom_nav_content_inset">93dp</dimen>
 </resources>

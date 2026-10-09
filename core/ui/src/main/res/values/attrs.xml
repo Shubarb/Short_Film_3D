@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BlurBackdropLayout">
+        <!-- Blur radius of the content behind this view. -->
+        <attr name="blurRadius" format="dimension" />
+        <attr name="blurCornerRadius" format="dimension" />
+        <!-- Drawn over the blurred backdrop. -->
+        <attr name="blurOverlayColor" format="color" />
+        <!-- Drawn instead of the blurred backdrop where blur is unavailable (< Android 12). -->
+        <attr name="blurFallbackColor" format="color" />
+        <attr name="blurStrokeColor" format="color" />
+        <attr name="blurStrokeWidth" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="PagerIndicatorView">
+        <attr name="indicatorDotSize" format="dimension" />
+        <attr name="indicatorActiveWidth" format="dimension" />
+        <attr name="indicatorSpacing" format="dimension" />
+        <attr name="indicatorActiveColor" format="color" />
+        <attr name="indicatorInactiveColor" format="color" />
+    </declare-styleable>
+</resources>

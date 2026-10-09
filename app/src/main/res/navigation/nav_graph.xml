@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Root graph: stitches together the graphs owned by each feature module. -->
+<!-- Root graph: the Main screen (bottom navigation) plus the graphs owned by each feature module. -->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/home_graph">
+    app:startDestination="@id/mainFragment">
 
-    <include app:graph="@navigation/home_graph" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.shortdrama.ai.main.MainFragment" />
+
     <include app:graph="@navigation/player_graph" />
 </navigation>

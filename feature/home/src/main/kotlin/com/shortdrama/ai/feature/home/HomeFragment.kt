@@ -1,20 +1,30 @@
 package com.shortdrama.ai.feature.home
 
 import android.view.View
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
+import androidx.core.view.updatePadding
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.material.chip.Chip
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.snackbar.Snackbar
-import com.shortdrama.ai.core.model.Category
+import com.shortdrama.ai.core.model.Film
 import com.shortdrama.ai.core.ui.base.BaseMviFragment
 import com.shortdrama.ai.core.ui.extension.setVisibleOrGone
 import com.shortdrama.ai.core.ui.navigation.navigateToPlayer
-import com.shortdrama.ai.feature.home.adapter.FilmAdapter
+import com.shortdrama.ai.feature.home.adapter.BannerAdapter
+import com.shortdrama.ai.feature.home.adapter.FilmCardAdapter
+import com.shortdrama.ai.feature.home.adapter.GridSpacingDecoration
 import com.shortdrama.ai.feature.home.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Calendar
+import java.util.Locale
 import com.shortdrama.ai.core.ui.R as CoreUiR
 
+/** First tab of the Main screen: banner carousel, "Big Hit" and "Recommend For You". */
 @AndroidEntryPoint
 class HomeFragment : BaseMviFragment<FragmentHomeBinding, HomeIntent, HomeState, HomeEffect>(
     FragmentHomeBinding::inflate,
@@ -22,35 +32,89 @@ class HomeFragment : BaseMviFragment<FragmentHomeBinding, HomeIntent, HomeState,
 
     override val viewModel: HomeViewModel by viewModels()
 
-    private val filmAdapter = FilmAdapter { film -> dispatch(HomeIntent.OpenFilm(film.id)) }
+    private val openFilm: (Film) -> Unit = { film -> dispatch(HomeIntent.OpenFilm(film.id)) }
+    private val bannerAdapter = BannerAdapter(openFilm)
+    private val bigHitAdapter = FilmCardAdapter(FilmCardAdapter.Style.LANDSCAPE, openFilm)
+    private val recommendAdapter = FilmCardAdapter(FilmCardAdapter.Style.POSTER, openFilm)
 
-    /** Chips are rebuilt only when categories change, not on every state emission. */
-    private var renderedCategories: List<Category>? = null
-
-    override fun setupViews() {
-        super.setupViews()
-        renderedCategories = null
-        with(binding) {
-            recyclerFilms.layoutManager = GridLayoutManager(requireContext(), SPAN_COUNT)
-            recyclerFilms.adapter = filmAdapter
-            swipeRefresh.setOnRefreshListener { dispatch(HomeIntent.Refresh) }
-            buttonRetry.setOnClickListener { dispatch(HomeIntent.Refresh) }
-            chipGroupCategories.setOnCheckedStateChangeListener { group, checkedIds ->
-                val chip = checkedIds.firstOrNull()?.let { group.findViewById<Chip>(it) }
-                val categoryId = chip?.tag as? String
-                if (categoryId != viewModel.state.value.selectedCategoryId) {
-                    dispatch(HomeIntent.SelectCategory(categoryId))
-                }
+    private val bannerPageCallback = object : ViewPager2.OnPageChangeCallback() {
+        override fun onPageSelected(position: Int) {
+            if (position != viewModel.state.value.bannerPosition) {
+                dispatch(HomeIntent.BannerChanged(position))
             }
         }
     }
 
+    override fun setupViews() {
+        super.setupViews()
+        with(binding) {
+            ViewCompat.setOnApplyWindowInsetsListener(root) { _, insets ->
+                val statusBars = insets.getInsets(WindowInsetsCompat.Type.statusBars())
+                val navigationBars = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
+                layoutTopBar.updatePadding(
+                    top = resources.getDimensionPixelSize(R.dimen.home_top_bar_padding) + statusBars.top,
+                )
+                viewStatusBarScrim.updateLayoutParams { height = statusBars.top }
+                scrollContent.updatePadding(
+                    bottom = resources.getDimensionPixelSize(CoreUiR.dimen.sf_bottom_nav_content_inset) +
+                        navigationBars.bottom,
+                )
+                insets
+            }
+            ViewCompat.requestApplyInsets(root)
+            // Fade the status bar backing in while the header scrolls away.
+            scrollContent.setOnScrollChangeListener(
+                NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, _ ->
+                    val fadeDistance = layoutTopBar.height.coerceAtLeast(1)
+                    viewStatusBarScrim.alpha = (scrollY.toFloat() / fadeDistance).coerceIn(0f, 1f)
+                },
+            )
+            textGreeting.setText(greetingRes())
+
+            pagerBanner.adapter = bannerAdapter
+            pagerBanner.registerOnPageChangeCallback(bannerPageCallback)
+
+            val spacing = resources.getDimensionPixelSize(CoreUiR.dimen.sf_screen_padding)
+            listOf(recyclerBigHit to bigHitAdapter, recyclerRecommend to recommendAdapter)
+                .forEach { (recycler, adapter) ->
+                    recycler.layoutManager = GridLayoutManager(requireContext(), SPAN_COUNT)
+                    recycler.addItemDecoration(GridSpacingDecoration(SPAN_COUNT, spacing, spacing))
+                    recycler.adapter = adapter
+                }
+
+            homeTabs().forEach { (tab, view) ->
+                view.setOnClickListener { dispatch(HomeIntent.SelectTab(tab)) }
+            }
+            listOf(blurTabForYou, blurTabNew, blurTabOriginal, blurTabRanking, blurTabCategory)
+                .forEach { it.setBlurTarget(blurBanner) }
+            swipeRefresh.setProgressViewOffset(false, 0, resources.getDimensionPixelSize(R.dimen.home_refresh_offset))
+            swipeRefresh.setOnRefreshListener { dispatch(HomeIntent.Refresh) }
+            buttonRetry.setOnClickListener { dispatch(HomeIntent.Refresh) }
+        }
+    }
+
     override fun render(state: HomeState) = with(binding) {
-        progressLoading.setVisibleOrGone(state.isLoading)
         swipeRefresh.isRefreshing = state.isRefreshing
-        groupEmpty.setVisibleOrGone(state.isEmpty)
-        renderCategories(state.categories, state.selectedCategoryId)
-        filmAdapter.submitList(state.films)
+        homeTabs().forEach { (tab, view) -> view.isSelected = tab == state.selectedTab }
+
+        bannerAdapter.submitList(state.feed.banners) {
+            // Restore the page after the pages exist (e.g. coming back from the player).
+            if (pagerBanner.currentItem != state.bannerPosition) {
+                pagerBanner.setCurrentItem(state.bannerPosition, false)
+            }
+        }
+        indicatorBanner.count = state.feed.banners.size
+        indicatorBanner.selection = state.bannerPosition
+        renderBannerInfo(state.currentBanner)
+
+        bigHitAdapter.submitList(state.feed.bigHits)
+        recommendAdapter.submitList(state.feed.recommended)
+        textSectionBigHit.setVisibleOrGone(state.feed.bigHits.isNotEmpty())
+        recyclerBigHit.setVisibleOrGone(state.feed.bigHits.isNotEmpty())
+        textSectionRecommend.setVisibleOrGone(state.feed.recommended.isNotEmpty())
+        recyclerRecommend.setVisibleOrGone(state.feed.recommended.isNotEmpty())
+        textEmpty.setVisibleOrGone(state.isEmpty)
+        buttonRetry.setVisibleOrGone(state.isEmpty)
     }
 
     override fun handleEffect(effect: HomeEffect) {
@@ -65,32 +129,40 @@ class HomeFragment : BaseMviFragment<FragmentHomeBinding, HomeIntent, HomeState,
     }
 
     override fun onDestroyView() {
-        binding.recyclerFilms.adapter = null
+        with(binding) {
+            pagerBanner.unregisterOnPageChangeCallback(bannerPageCallback)
+            pagerBanner.adapter = null
+            recyclerBigHit.adapter = null
+            recyclerRecommend.adapter = null
+        }
         super.onDestroyView()
     }
 
-    private fun renderCategories(categories: List<Category>, selectedId: String?) {
-        val group = binding.chipGroupCategories
-        if (categories != renderedCategories) {
-            renderedCategories = categories
-            group.removeAllViews()
-            group.addView(createChip(tag = null, title = getString(R.string.home_category_all)))
-            categories.forEach { group.addView(createChip(tag = it.id, title = it.title)) }
-        }
-        binding.scrollCategories.setVisibleOrGone(categories.isNotEmpty())
-        val target = (0 until group.childCount)
-            .map { group.getChildAt(it) as Chip }
-            .firstOrNull { it.tag == selectedId }
-        if (target != null && !target.isChecked) target.isChecked = true
+    private fun renderBannerInfo(film: Film?) = with(binding) {
+        layoutBannerInfo.setVisibleOrGone(film != null)
+        if (film == null) return@with
+        textBannerRating.setVisibleOrGone(film.rating != null)
+        textBannerRating.text = film.rating?.let { String.format(Locale.US, "%.1f", it) }
+        textBannerTitle.text = film.title
+        textBannerGenres.text = film.tags.joinToString(getString(R.string.home_genre_separator))
+        textBannerGenres.setVisibleOrGone(film.tags.isNotEmpty())
     }
 
-    private fun createChip(tag: String?, title: String): Chip =
-        (layoutInflater.inflate(R.layout.item_category_chip, binding.chipGroupCategories, false) as Chip)
-            .apply {
-                id = View.generateViewId()
-                this.tag = tag
-                text = title
-            }
+    private fun homeTabs(): List<Pair<HomeTab, View>> = with(binding) {
+        listOf(
+            HomeTab.FOR_YOU to tabForYou,
+            HomeTab.NEW to tabNew,
+            HomeTab.ORIGINAL to tabOriginal,
+            HomeTab.RANKING to tabRanking,
+            HomeTab.CATEGORY to tabCategory,
+        )
+    }
+
+    private fun greetingRes(): Int = when (Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
+        in 5..11 -> R.string.home_greeting_morning
+        in 12..17 -> R.string.home_greeting_afternoon
+        else -> R.string.home_greeting_evening
+    }
 
     private companion object {
         const val SPAN_COUNT = 2
