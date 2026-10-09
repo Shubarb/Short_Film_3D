@@ -11,6 +11,7 @@
         <item name="android:paddingEnd">15dp</item>
         <item name="android:paddingTop">3dp</item>
         <item name="android:paddingBottom">3dp</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:textAppearance">@style/TextAppearance.ShortFilm.Tab</item>
         <item name="android:textColor">@color/home_tab_text</item>
     </style>
@@ -19,6 +20,7 @@
         <item name="android:layout_width">40dp</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:background">@drawable/bg_header_button</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:padding">10dp</item>
         <item name="android:scaleType">fitCenter</item>
     </style>
@@ -29,6 +31,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:drawablePadding">8dp</item>
         <item name="android:gravity">center_vertical</item>
+        <item name="android:includeFontPadding">false</item>
         <item name="android:textAppearance">@style/TextAppearance.ShortFilm.Subtitle1</item>
         <item name="drawableStartCompat">@drawable/bg_section_brush</item>
     </style>
